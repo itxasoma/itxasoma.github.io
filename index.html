@@ -36,7 +36,6 @@
   a{color:var(--orange);text-decoration:none;}
   a:hover{text-decoration:underline;}
 
-  /* animated science background */
   #bg-canvas{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-2;display:block;}
   #bg-tint{
     position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;
@@ -66,6 +65,7 @@
     nav.topnav ul{gap:1rem;font-size:0.85rem;}
   }
 
+  /* header kept exactly as preferred: name/photo separated, not centered */
   header{
     min-height:82vh;display:flex;align-items:center;gap:4vw;padding:8vh 8vw;
     position:relative;flex-wrap:wrap;overflow:hidden;
@@ -104,15 +104,20 @@
   .btn:hover{transform:translateY(-2px);border-color:var(--orange);text-decoration:none;}
   .btn.primary{background:linear-gradient(135deg, var(--orange), var(--pink));color:#1a1020;border:none;}
   .btn.github{background:linear-gradient(135deg, var(--blue), var(--teal));color:#0b1a22;border:none;}
+  .btn.email-cta{
+    background:linear-gradient(135deg, var(--yellow), var(--teal));
+    color:#12210f;border:none;font-weight:700;font-size:1.05rem;padding:1rem 2rem;
+    box-shadow:0 10px 30px rgba(63,168,143,0.3);
+  }
 
   main{max-width:1000px;margin:0 auto;padding:6vh 6vw;}
   section{margin-bottom:7vh;}
   .section-label{font-size:0.8rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--purple);font-weight:700;margin-bottom:0.8rem;}
   h2{font-size:clamp(1.5rem, 3vw, 2rem);font-weight:700;margin-bottom:1.2rem;letter-spacing:-0.01em;}
-  p.lead{color:var(--muted);max-width:700px;font-size:1.02rem;}
+  p.lead{color:var(--muted);width:100%;font-size:1.02rem;text-align:justify;}
 
   #bubbles-wrap{
-    position:relative;width:100%;height:560px;background:rgba(29,21,38,0.72);
+    position:relative;width:100%;height:620px;background:rgba(29,21,38,0.72);
     border:1px solid var(--border);border-radius:16px;margin-top:1.6rem;overflow:hidden;
     backdrop-filter:blur(4px);
   }
@@ -126,14 +131,14 @@
   .tooltip .t-title{font-weight:700;color:var(--orange);margin-bottom:0.25rem;display:block;}
   .hint{color:var(--muted);font-size:0.85rem;margin-top:0.6rem;}
 
-  .poster-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;border-left:4px solid var(--purple);backdrop-filter:blur(6px);}
+  .poster-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;border-left:4px solid var(--purple);backdrop-filter:blur(6px);width:100%;}
   .poster-card h3{font-size:1.15rem;margin-bottom:0.3rem;}
   .poster-card .authors{color:var(--teal);font-size:0.9rem;margin-bottom:1rem;}
-  .poster-card p{color:var(--muted);font-size:0.95rem;}
+  .poster-card p{color:var(--muted);font-size:0.95rem;text-align:justify;}
   .poster-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem;}
   .poster-tags span{padding:0.3rem 0.8rem;border-radius:999px;font-size:0.78rem;font-weight:600;background:rgba(144,2,173,0.18);color:var(--pink);border:1px solid var(--border);}
   .poster-embed{margin-top:1.4rem;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#0f0a15;}
-  .poster-embed iframe{width:100%;height:640px;border:none;display:block;}
+  .poster-embed iframe{width:100%;height:360px;border:none;display:block;}
   .poster-actions{margin-top:1rem;display:flex;gap:0.8rem;flex-wrap:wrap;}
 
   .timeline{border-left:2px solid var(--border);padding-left:1.4rem;margin-top:1.6rem;}
@@ -141,20 +146,26 @@
   .tl-item::before{content:'';position:absolute;left:-1.55rem;top:0.3rem;width:9px;height:9px;border-radius:50%;background:var(--orange);}
   .tl-item .tag{color:var(--orange);font-weight:600;font-size:0.85rem;}
   .tl-item h3{font-size:1.05rem;margin-top:0.2rem;}
-  .tl-item p{color:var(--muted);font-size:0.92rem;margin-top:0.2rem;}
+  .tl-item p{color:var(--muted);font-size:0.92rem;margin-top:0.2rem;text-align:justify;}
 
   .skills{display:flex;flex-wrap:wrap;gap:0.55rem;margin-top:1.4rem;}
   .skill{padding:0.4rem 0.9rem;border-radius:999px;background:var(--card);border:1px solid var(--border);font-size:0.85rem;color:var(--text);backdrop-filter:blur(6px);}
 
-  footer{border-top:1px solid var(--border);padding:5vh 8vw;text-align:center;color:var(--muted);font-size:0.9rem;background:rgba(22,15,28,0.4);}
-  footer .links{justify-content:center;margin-bottom:1.2rem;}
+  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.4rem;text-align:center;backdrop-filter:blur(6px);}
+  .contact-card p.lead{text-align:center;margin:0 auto 1.6rem;max-width:600px;}
+  .contact-secondary{margin-top:1.4rem;display:flex;gap:0.9rem;justify-content:center;flex-wrap:wrap;}
+
+  footer{border-top:1px solid var(--border);padding:4vh 8vw;text-align:center;color:var(--muted);font-size:0.85rem;background:rgba(22,15,28,0.4);}
 
   @media (max-width:700px){
     header{flex-direction:column;text-align:center;padding:8vh 6vw;}
     .hero-text{flex:1 1 auto;}
     .hero-photo{width:220px;height:220px;flex:0 0 220px;}
-    #bubbles-wrap{height:460px;}
-    .poster-embed iframe{height:420px;}
+    #bubbles-wrap{height:520px;}
+    .poster-embed iframe{height:300px;}
+    p.lead{text-align:left;}
+    .poster-card p{text-align:left;}
+    .tl-item p{text-align:left;}
   }
 </style>
 </head>
@@ -201,24 +212,24 @@
       Master's in Atomistic and Multiscale Computational Modelling at the Universitat de Barcelona, following a
       Physics degree focused on nanomagnetism and simulation. My thesis on chiral magnetic nanotubes, supervised by
       Prof. Òscar Iglesias, was presented as a poster at ICFPM 2025 (Bariloche) and as an oral talk at INTERMAG 2026
-      (Manchester) — one of the largest magnetism conferences worldwide.
+      (Manchester), one of the largest magnetism conferences worldwide.
     </p>
     <p class="lead" style="margin-top:1rem;">
-      I also spent a summer at CIC biomaGUNE building an MRI analysis pipeline for a study later published in
-      <em>Nature Metabolism</em>. I'm passionate about how simple physical rules produce complex material behavior,
-      and I'm now looking for research or industry roles applying simulation and computational methods to hard
-      problems — in computational physics, materials science, or scientific software.
+      I also spent a summer at CIC biomaGUNE, working with the MRI Lab team on an MRI analysis pipeline. I'm
+      passionate about how simple physical rules produce complex material behavior, and I'm now looking for research
+      or industry roles applying simulation and computational methods to hard problems, in computational physics,
+      materials science, or scientific software.
     </p>
   </section>
 
   <section id="projects" data-bg="spins">
     <div class="section-label">Projects</div>
     <h2>An interactive map of my repositories</h2>
-    <p class="lead">Every bubble below is a project from my GitHub — sized by scope and colored from the poster's palette. Move your cursor near a bubble to see it drift away, hover for details, or click to open the repository.</p>
+    <p class="lead">Every bubble below is a project from my GitHub. Brighter, larger bubbles are the projects I've starred and featured on LinkedIn. Hover a bubble for a moment to freeze it and read its details, or click to open the repository.</p>
     <div id="bubbles-wrap">
       <div class="tooltip" id="tooltip"></div>
     </div>
-    <p class="hint">Tip: drag a bubble to reposition it, or just hover nearby and watch them react. They stay inside the box.</p>
+    <p class="hint">Tip: drag a bubble to reposition it, they stay inside the box and pause when you hover.</p>
   </section>
 
   <section id="poster" data-bg="spins">
@@ -230,8 +241,8 @@
       <p>
         This poster presents Monte Carlo simulations (classical 3D Heisenberg model) of single-wall magnetic
         nanotubes with competing exchange and dipolar interactions. By folding planar spin lattices at different
-        chiral angles, we reveal a rich variety of stable magnetic states — uniform, vortex-like and helical
-        configurations — depending on tube geometry, chirality and the exchange-to-dipolar ratio γ = g/J. Adding
+        chiral angles, we reveal a rich variety of stable magnetic states, uniform, vortex-like and helical
+        configurations, depending on tube geometry, chirality and the exchange-to-dipolar ratio γ = g/J. Adding
         radial anisotropy further stabilizes radial and mixed magnetization textures, offering design insight for
         functional magnetic nanostructures. Presented at ICFPM 2025 (Bariloche) and as an oral talk at INTERMAG 2026
         (Manchester).
@@ -263,23 +274,23 @@
       </div>
       <div class="tl-item">
         <span class="tag">2026 · Manchester, UK</span>
-        <h3>Oral Talk — INTERMAG 2026</h3>
+        <h3>Oral Talk at INTERMAG 2026</h3>
         <p>Presented the chiral nanotube magnetism work as an oral talk at one of the largest magnetism conferences worldwide.</p>
       </div>
       <div class="tl-item">
         <span class="tag">2025 · Bariloche, Argentina</span>
-        <h3>Poster — ICFPM 2025</h3>
+        <h3>Poster at ICFPM 2025</h3>
         <p>Presented "Magnetic Ordering in Chiral Nanotubes with Competing Interactions" as a poster.</p>
       </div>
       <div class="tl-item">
         <span class="tag">2024 · Donostia / San Sebastián</span>
-        <h3>Research Internship — CIC biomaGUNE</h3>
-        <p>Built an MRI analysis pipeline for a study later published in <em>Nature Metabolism</em>.</p>
+        <h3>Research Internship at CIC biomaGUNE</h3>
+        <p>Worked with the MRI Lab team on an MRI analysis pipeline.</p>
       </div>
       <div class="tl-item">
         <span class="tag">BSc · Universitat de Barcelona</span>
         <h3>Physics, focused on nanomagnetism and simulation</h3>
-        <p>Bachelor's thesis (TFG) on Monte Carlo simulation of magnetic nanotubes — the foundation for the later master's work.</p>
+        <p>Bachelor's thesis (TFG) on Monte Carlo simulation of magnetic nanotubes, the foundation for the later master's work.</p>
       </div>
     </div>
   </section>
@@ -300,13 +311,22 @@
     </div>
   </section>
 
+  <section id="contact" data-bg="molecules">
+    <div class="section-label">Get In Touch</div>
+    <h2>Contact</h2>
+    <div class="contact-card">
+      <p class="lead">I'm happy to talk about computational physics, research roles, or interesting simulation problems. The fastest way to reach me is by email.</p>
+      <a class="btn email-cta" href="mailto:itxaso.mam@gmail.com">itxaso.mam@gmail.com ✉</a>
+      <div class="contact-secondary">
+        <a class="btn primary" href="https://www.linkedin.com/in/itxaso-munoz-aldalur/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn github" href="https://github.com/itxasoma" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<footer id="contact" data-bg="molecules">
-  <div class="links">
-    <a class="btn primary" href="https://www.linkedin.com/in/itxaso-munoz-aldalur/" target="_blank" rel="noopener">LinkedIn ↗</a>
-    <a class="btn github" href="https://github.com/itxasoma" target="_blank" rel="noopener">GitHub ↗</a>
-  </div>
+<footer>
   <p>Itxaso Muñoz Aldalur · Barcelona &amp; Donostia / San Sebastián</p>
 </footer>
 
@@ -314,49 +334,82 @@
 <script>
 /* ---------- Projects bubble chart ---------- */
 const projects = [
-  {name:"Chiral Nanotubes — TFM", desc:"Master's thesis: Monte Carlo simulation of magnetic ordering in chiral nanotubes. Presented at ICFPM 2025 and INTERMAG 2026.", lang:"Jupyter", url:"https://github.com/itxasoma/Nanotubes-main", size:359349, stars:2, color:"var(--purple)"},
-  {name:"Nanotubes — TFG", desc:"Bachelor's thesis: Fortran Monte Carlo (Metropolis) code with a 3D classical Heisenberg Hamiltonian — exchange, dipolar and anisotropy.", lang:"Fortran/Jupyter", url:"https://github.com/itxasoma/Nanotubes", size:6390, stars:2, color:"var(--darkpurple)"},
-  {name:"Micromagnetics (mumax3)", desc:"Micromagnetic simulation workspace built on the mumax3 GPU solver.", lang:"Jupyter", url:"https://github.com/itxasoma/mumax3", size:478900, stars:1, color:"var(--blue)"},
-  {name:"Ising Spin Glass MC", desc:"Exchange Monte Carlo simulation of an Ising spin glass.", lang:"Fortran", url:"https://github.com/itxasoma/masm-exchangeMC", size:245997, stars:0, color:"var(--darkorange)"},
-  {name:"SHAKE Algorithm MD", desc:"SHAKE-algorithm constrained molecular dynamics implementation.", lang:"Jupyter", url:"https://github.com/itxasoma/masm-shake", size:85735, stars:0, color:"var(--salmon)"},
-  {name:"Transition Path Sampling", desc:"Minimal implementation of Transition Path Sampling for a Coarse-Graining course.", lang:"Fortran", url:"https://github.com/itxasoma/transition-path-sampling", size:4953, stars:0, color:"var(--teal)"},
-  {name:"Lennard-Jones Argon MD", desc:"Molecular Dynamics final project: Lennard-Jones argon simulation.", lang:"Jupyter", url:"https://github.com/itxasoma/momo-md-lj-argon", size:4183, stars:0, color:"var(--orange)"},
-  {name:"2D Ising MCMC", desc:"Markov-chain Monte Carlo (Metropolis) for the 2D Ising model with binning analysis.", lang:"Fortran", url:"https://github.com/itxasoma/momo-McMC-2DIsing", size:5324, stars:0, color:"var(--magenta)"},
-  {name:"Kicked Rotor Chaos", desc:"Final project for Introducció a la Computació Científica: chaos in the kicked rotor.", lang:"Jupyter", url:"https://github.com/itxasoma/kicked-rotor-chaos", size:30224, stars:1, color:"var(--pink)"},
-  {name:"Complex Networks", desc:"Analysis and modelling project for the Complex Networks course.", lang:"Python", url:"https://github.com/itxasoma/complex-networks-project", size:25917, stars:0, color:"var(--lightorange)"},
-  {name:"Membrane Simulation Analysis", desc:"Data analysis of membrane/soft-matter simulation practice.", lang:"Python", url:"https://github.com/itxasoma/membrane-practice-analysis", size:262072, stars:1, color:"var(--yellow)"},
-  {name:"Wulff Shapes", desc:"Modelling equilibrium crystal shapes via the Wulff construction.", lang:"Python", url:"https://github.com/itxasoma/V2--Wulff-Shapes", size:4400, stars:0, color:"var(--purple)"},
-  {name:"Bird Flock Simulation", desc:"Bird flock applet — an emergent-behavior simulation, live on GitHub Pages.", lang:"HTML/JS", url:"https://itxasoma.github.io/birdflock/", size:48, stars:1, color:"var(--teal)"}
+  {name:"Chiral Nanotubes (TFM)", desc:"Fortran Monte Carlo (Metropolis) code simulating magnetic nanotubes via a 3D Heisenberg Hamiltonian with exchange, dipolar, anisotropy and DMI interactions. Being prepared for publication.", lang:"Fortran / Python", url:"https://github.com/itxasoma/Nanotubes-main", color:"var(--orange)", featured:true},
+  {name:"Nanotubes (TFG)", desc:"Bachelor's thesis: Fortran Monte Carlo (Metropolis) code with a 3D classical Heisenberg Hamiltonian, exchange, dipolar and anisotropy.", lang:"Fortran / Jupyter", url:"https://github.com/itxasoma/Nanotubes", color:"var(--purple)"},
+  {name:"Micromagnetics (mumax3)", desc:"Micromagnetic simulation workspace built on the mumax3 GPU solver.", lang:"Jupyter", url:"https://github.com/itxasoma/mumax3", color:"var(--blue)"},
+  {name:"Ising Spin Glass MC", desc:"Exchange Monte Carlo simulation of an Ising spin glass.", lang:"Fortran", url:"https://github.com/itxasoma/masm-exchangeMC", color:"var(--darkpurple)"},
+  {name:"SHAKE Algorithm MD", desc:"SHAKE-algorithm constrained molecular dynamics implementation.", lang:"Jupyter", url:"https://github.com/itxasoma/masm-shake", color:"var(--magenta)"},
+  {name:"Transition Path Sampling", desc:"Minimal implementation of Transition Path Sampling for a Coarse-Graining course.", lang:"Fortran", url:"https://github.com/itxasoma/transition-path-sampling", color:"var(--teal)"},
+  {name:"Lennard-Jones Argon MD", desc:"From-scratch modular Fortran molecular dynamics engine for a Lennard-Jones argon fluid: Maxwell-Boltzmann initialization, Velocity Verlet and Euler integrators, g(r), MSD, and block-averaging error analysis.", lang:"Fortran / Jupyter", url:"https://github.com/itxasoma/momo-md-lj-argon", color:"var(--lightorange)", featured:true},
+  {name:"2D Ising MCMC", desc:"Markov-chain Monte Carlo (Metropolis) for the 2D Ising model with binning analysis.", lang:"Fortran", url:"https://github.com/itxasoma/momo-McMC-2DIsing", color:"var(--purple)"},
+  {name:"Kicked Rotor Chaos", desc:"Final project for Introducció a la Computació Científica: chaos in the kicked rotor.", lang:"Jupyter", url:"https://github.com/itxasoma/kicked-rotor-chaos", color:"var(--magenta)"},
+  {name:"Complex Networks", desc:"Analysis and modelling project for the Complex Networks course.", lang:"Python", url:"https://github.com/itxasoma/complex-networks-project", color:"var(--blue)"},
+  {name:"Lipid Membrane MD", desc:"Full molecular dynamics workflow for lipid membranes (soft matter): simulation, equilibration and production stages automated via Makefile, with Python analysis of correlation functions and trajectory statistics.", lang:"Python / Fortran", url:"https://github.com/itxasoma/membrane-practice-analysis", color:"var(--darkorange)", featured:true},
+  {name:"Wulff Shapes", desc:"Modelling equilibrium crystal shapes via the Wulff construction.", lang:"Python", url:"https://github.com/itxasoma/V2--Wulff-Shapes", color:"var(--darkpurple)"},
+  {name:"Bird Flock Simulation", desc:"Interactive web app modeling collective bird flock behavior (Vicsek-type model): cohesion, alignment and separation rules producing emergent collective patterns in real time.", lang:"HTML / JS", url:"https://github.com/itxasoma/birdflock", color:"var(--yellow)", featured:true},
+  {name:"Polymer MC (MPI/OpenMP)", desc:"Team Monte Carlo simulation of a polymer model in Fortran, with serial, OpenMP-parallel and MPI-distributed versions, replica exchange, and cluster deployment via qsub. Course project for Eines Informàtiques Avançades.", lang:"Fortran / MPI / OpenMP", url:"https://github.com/Eines-Informatiques-Avancades/Project_2026_II", color:"var(--salmon)", featured:true},
+  {name:"Basic Skills Data Analysis", desc:"Large-scale analysis of basic skills test results in Catalonia: cross-subject correlations, geographic and temporal trends, and the effect of birth month on academic performance.", lang:"Python", url:"https://github.com/m-garcia-rodriguez/Education-Big-Data-Project", color:"var(--pink)", featured:true}
 ];
 
 const wrap = document.getElementById('bubbles-wrap');
 const tooltip = document.getElementById('tooltip');
 const width = wrap.clientWidth, height = wrap.clientHeight;
 
-const radiusScale = d3.scaleLog().domain([40, 480000]).range([26, 62]);
-projects.forEach(p => { p.r = radiusScale(p.size) + p.stars*2; });
+function baseRadius(name){
+  return Math.max(30, Math.min(52, 20 + name.length * 1.25));
+}
+projects.forEach(p => { const base = baseRadius(p.name); p.r = p.featured ? base * 1.55 : base; });
+
+function wrapLabel(name, r){
+  const maxChars = Math.max(6, Math.floor((r*2) / 6.2));
+  const words = name.split(' ');
+  const lines = [];
+  let cur = '';
+  for (const w of words){
+    const test = cur ? cur + ' ' + w : w;
+    if (test.length > maxChars && cur){ lines.push(cur); cur = w; }
+    else { cur = test; }
+  }
+  if (cur) lines.push(cur);
+  return lines.slice(0,3);
+}
 
 const svg = d3.select(wrap).append('svg').attr('viewBox', `0 0 ${width} ${height}`);
 const resolvedColor = c => getComputedStyle(document.documentElement).getPropertyValue(c.match(/--[\w-]+/)[0]).trim();
 projects.forEach(p => p.hex = resolvedColor(p.color));
-projects.forEach(p => { p.x = width/2 + (Math.random()-0.5)*40; p.y = height/2 + (Math.random()-0.5)*40; });
+projects.forEach(p => { p.x = width/2 + (Math.random()-0.5)*40; p.y = height/2 + (Math.random()-0.5)*40; p.hoverTimer = null; p.pinned = false; });
 
 const node = svg.selectAll('g.node')
   .data(projects).join('g').attr('class','node').style('cursor','pointer')
-  .on('mouseenter', (event,d) => {
+  .on('mouseenter', function(event,d){
     tooltip.style.opacity = 1;
-    tooltip.innerHTML = `<span class="t-title">${d.name}</span>${d.desc}<br><br><em>${d.lang} · ★ ${d.stars}</em>`;
+    tooltip.innerHTML = `<span class="t-title">${d.name}</span>${d.desc}<br><br><em>${d.lang}${d.featured ? ' · Featured ⭐' : ''}</em>`;
+    d.hoverTimer = setTimeout(() => { d.pinned = true; d.fx = d.x; d.fy = d.y; }, 260);
   })
   .on('mousemove', (event) => {
     const rect = wrap.getBoundingClientRect();
     tooltip.style.left = (event.clientX - rect.left + 14) + 'px';
     tooltip.style.top = (event.clientY - rect.top + 14) + 'px';
   })
-  .on('mouseleave', () => { tooltip.style.opacity = 0; })
+  .on('mouseleave', function(event,d){
+    tooltip.style.opacity = 0;
+    if (d.hoverTimer){ clearTimeout(d.hoverTimer); d.hoverTimer = null; }
+    d.pinned = false; d.fx = null; d.fy = null;
+    if (simulation.alpha() < 0.1) simulation.alpha(0.1).restart();
+  })
   .on('click', (event,d) => { window.open(d.url, '_blank'); });
 
 node.append('circle').attr('r', d => d.r).attr('fill', d => d.hex).attr('fill-opacity', 0.9).attr('stroke', '#160f1c').attr('stroke-width', 2);
-node.append('text').attr('class','bubble-label').attr('dy','0.32em').text(d => d.name.length > 16 ? d.name.slice(0,14)+'…' : d.name);
+
+node.each(function(d){
+  const lines = wrapLabel(d.name, d.r);
+  const lh = 12.5;
+  const startY = -((lines.length - 1) / 2) * lh;
+  const text = d3.select(this).append('text').attr('class','bubble-label');
+  lines.forEach((line, i) => {
+    text.append('tspan').attr('x', 0).attr('y', startY + i*lh + 4).text(line);
+  });
+});
 
 const simulation = d3.forceSimulation(projects)
   .force('charge', d3.forceManyBody().strength(6))
@@ -402,7 +455,7 @@ node.call(d3.drag()
     d.fx = Math.max(d.r, Math.min(width - d.r, event.x));
     d.fy = Math.max(d.r, Math.min(height - d.r, event.y));
   })
-  .on('end', (event,d) => { if (!event.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; })
+  .on('end', (event,d) => { if (!event.active) simulation.alphaTarget(0); if(!d.pinned){ d.fx = null; d.fy = null; } })
 );
 
 /* ---------- Artistic science background ---------- */
@@ -415,26 +468,22 @@ window.addEventListener('resize', resize); resize();
 const palette = ['#FCAE3F','#D45385','#9002AD','#3972A3','#3FA88F','#ED7966','#FCD926'];
 function pick(i){ return palette[i % palette.length]; }
 
-// particle network
 const particles = Array.from({length:70}, () => ({
   x: Math.random()*cw, y: Math.random()*ch,
   vx: (Math.random()-0.5)*0.35, vy: (Math.random()-0.5)*0.35,
   c: Math.floor(Math.random()*palette.length)
 }));
 
-// spin lattice grid
 const SPIN_N = 12;
 const spins = [];
 for(let i=0;i<SPIN_N;i++) for(let j=0;j<SPIN_N;j++){
   spins.push({gx:i, gy:j, angle:Math.random()*Math.PI*2, speed:(Math.random()-0.5)*0.02, c: Math.floor(Math.random()*palette.length)});
 }
 
-// orbit rings
 const orbits = Array.from({length:5}, (_,i) => ({
   radiusFactor: 0.12 + i*0.075, speed: 0.15 + i*0.05, dotCount: 3+i, c: Math.floor(Math.random()*palette.length)
 }));
 
-// molecule bonds
 const molecules = Array.from({length:40}, () => ({
   x: Math.random()*cw, y: Math.random()*ch,
   vx:(Math.random()-0.5)*0.5, vy:(Math.random()-0.5)*0.5,
