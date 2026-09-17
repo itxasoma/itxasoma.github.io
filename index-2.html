@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Itxaso Muñoz Aldalur — Physicist &amp; Computational Modelling</title>
+<style>
+  :root{
+    --bg:#160f1c;
+    --bg2:#1d1526;
+    --card:#241a30;
+    --border:#3a2c4a;
+    --text:#f3eef7;
+    --muted:#b7abc4;
+
+    /* palette extracted from the poster's CMYK color defs */
+    --yellow:#FCD926;
+    --lightorange:#FFC72E;
+    --orange:#FCAE3F;
+    --darkorange:#F79452;
+    --salmon:#ED7966;
+    --pink:#D45385;
+    --magenta:#BA2D9C;
+    --purple:#9002AD;
+    --darkpurple:#5802AD;
+    --blue:#3972A3;
+    /* accent pulled from the photo's teal armchair */
+    --teal:#3FA88F;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    line-height:1.6;
+  }
+  a{color:var(--orange);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  header{
+    min-height:82vh;
+    display:flex;
+    align-items:center;
+    gap:4vw;
+    padding:6vh 8vw;
+    background:
+      radial-gradient(circle at 88% 10%, rgba(252,174,63,0.16), transparent 45%),
+      radial-gradient(circle at 8% 85%, rgba(90,2,173,0.20), transparent 50%),
+      radial-gradient(circle at 60% 100%, rgba(63,168,143,0.12), transparent 45%),
+      var(--bg);
+    border-bottom:1px solid var(--border);
+    flex-wrap:wrap;
+  }
+  .hero-text{flex:1 1 420px;}
+  .hero-photo{
+    flex:0 0 220px;
+    width:220px;height:220px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid transparent;
+    background:linear-gradient(135deg, var(--orange), var(--pink), var(--purple), var(--blue)) padding-box, linear-gradient(135deg, var(--orange), var(--pink), var(--purple), var(--blue)) border-box;
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .kicker{
+    font-size:0.85rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    background:linear-gradient(90deg, var(--orange), var(--pink));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    font-weight:700;
+    margin-bottom:1.2rem;
+  }
+  h1{
+    font-size:clamp(2.2rem, 5.5vw, 3.8rem);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-0.02em;
+  }
+  .subtitle{
+    margin-top:1.1rem;
+    font-size:clamp(1.02rem, 2vw, 1.3rem);
+    color:var(--muted);
+    max-width:600px;
+  }
+  .location{
+    margin-top:0.9rem;
+    font-size:0.95rem;
+    color:var(--teal);
+    font-weight:600;
+  }
+  .links{
+    margin-top:2.2rem;
+    display:flex;
+    gap:0.9rem;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.55rem;
+    padding:0.7rem 1.3rem;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.95rem;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    transition:transform .15s ease, border-color .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);border-color:var(--orange);text-decoration:none;}
+  .btn.primary{
+    background:linear-gradient(135deg, var(--orange), var(--pink));
+    color:#1a1020;
+    border:none;
+  }
+
+  main{max-width:1000px;margin:0 auto;padding:6vh 6vw;}
+  section{margin-bottom:7vh;}
+  .section-label{
+    font-size:0.8rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--purple);
+    font-weight:700;
+    margin-bottom:0.8rem;
+  }
+  h2{
+    font-size:clamp(1.5rem, 3vw, 2rem);
+    font-weight:700;
+    margin-bottom:1.2rem;
+    letter-spacing:-0.01em;
+  }
+  p.lead{color:var(--muted);max-width:700px;font-size:1.02rem;}
+
+  /* bubble chart */
+  #bubbles-wrap{
+    position:relative;
+    width:100%;
+    height:560px;
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:20px;
+    margin-top:1.6rem;
+    overflow:hidden;
+  }
+  #bubbles-wrap svg{width:100%;height:100%;display:block;cursor:grab;}
+  .bubble-label{
+    font-size:11px;
+    font-weight:600;
+    fill:#1a1020;
+    pointer-events:none;
+    text-anchor:middle;
+  }
+  .tooltip{
+    position:absolute;
+    max-width:260px;
+    background:#0f0a15;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:0.7rem 0.9rem;
+    font-size:0.85rem;
+    color:var(--text);
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .12s ease;
+    z-index:10;
+  }
+  .tooltip .t-title{font-weight:700;color:var(--orange);margin-bottom:0.25rem;display:block;}
+  .hint{color:var(--muted);font-size:0.85rem;margin-top:0.6rem;}
+
+  .poster-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:2rem;
+    border-left:4px solid var(--purple);
+  }
+  .poster-card h3{font-size:1.15rem;margin-bottom:0.3rem;}
+  .poster-card .authors{color:var(--teal);font-size:0.9rem;margin-bottom:1rem;}
+  .poster-card p{color:var(--muted);font-size:0.95rem;}
+  .poster-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem;}
+  .poster-tags span{
+    padding:0.3rem 0.8rem;border-radius:999px;font-size:0.78rem;font-weight:600;
+    background:rgba(144,2,173,0.18); color:var(--pink); border:1px solid var(--border);
+  }
+
+  .timeline{border-left:2px solid var(--border);padding-left:1.4rem;margin-top:1.6rem;}
+  .tl-item{margin-bottom:1.6rem;position:relative;}
+  .tl-item::before{
+    content:'';position:absolute;left:-1.55rem;top:0.3rem;width:9px;height:9px;
+    border-radius:50%;background:var(--orange);
+  }
+  .tl-item .tag{color:var(--orange);font-weight:600;font-size:0.85rem;}
+  .tl-item h3{font-size:1.05rem;margin-top:0.2rem;}
+  .tl-item p{color:var(--muted);font-size:0.92rem;margin-top:0.2rem;}
+
+  .skills{display:flex;flex-wrap:wrap;gap:0.55rem;margin-top:1.4rem;}
+  .skill{
+    padding:0.4rem 0.9rem;border-radius:999px;background:var(--bg2);
+    border:1px solid var(--border);font-size:0.85rem;color:var(--text);
+  }
+
+  footer{border-top:1px solid var(--border);padding:5vh 8vw;text-align:center;color:var(--muted);font-size:0.9rem;}
+  footer .links{justify-content:center;margin-bottom:1.2rem;}
+
+  @media (max-width:700px){
+    header{flex-direction:column;text-align:center;padding:8vh 6vw;}
+    .hero-text{flex:1 1 auto;}
+    #bubbles-wrap{height:460px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hero-text">
+    <div class="kicker">Physicist · Computational Science</div>
+    <h1>Itxaso Muñoz Aldalur</h1>
+    <p class="subtitle">MSc in Computational Modelling (Atomistic &amp; Multiscale Physics, Chemistry and Biochemistry) — exploring complex systems, nanomagnetism and machine learning.</p>
+    <p class="location">📍 Barcelona &amp; Donostia / San Sebastián</p>
+    <div class="links">
+      <a class="btn primary" href="https://www.linkedin.com/in/itxaso-munoz-aldalur/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="https://github.com/itxasoma" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="assets/photo.jpg" alt="Itxaso Muñoz Aldalur">
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <div class="section-label">About</div>
+    <h2>Computational physicist, curious by training</h2>
+    <p class="lead">
+      I'm a physicist graduated from the Universitat de Barcelona, now finishing an MSc in Computational Modelling.
+      My work sits at the intersection of statistical mechanics, numerical simulation and data-driven methods — I like
+      taking messy physical systems and turning them into models, code and insight. Based between Barcelona and
+      Donostia / San Sebastián, I'm currently exploring roles in data science, research and computational engineering.
+    </p>
+  </section>
+
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <h2>An interactive map of my repositories</h2>
+    <p class="lead">Each bubble is a public project from my GitHub. Size reflects project scope, color follows the poster's palette. Drag a bubble, hover for details, click to open the repo.</p>
+    <div id="bubbles-wrap">
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+    <p class="hint">Tip: drag bubbles around, they'll spring back into place.</p>
+  </section>
+
+  <section id="poster">
+    <div class="section-label">Scientific Poster</div>
+    <h2>Featured research</h2>
+    <div class="poster-card">
+      <h3>Magnetic Ordering in Chiral Nanotubes with Competing Interactions</h3>
+      <p class="authors">Itxaso Muñoz-Aldalur, Òscar Iglesias Clotas — Dept. Física de la Matèria Condensada, Universitat de Barcelona</p>
+      <p>
+        This poster presents Monte Carlo simulations (classical 3D Heisenberg model) of single-wall magnetic
+        nanotubes with competing exchange and dipolar interactions. By folding planar spin lattices at different
+        chiral angles, we reveal a rich variety of stable magnetic states — uniform, vortex-like and helical
+        configurations — depending on tube geometry, chirality and the exchange-to-dipolar ratio γ = g/J. Adding
+        radial anisotropy further stabilizes radial and mixed magnetization textures, offering design insight for
+        functional magnetic nanostructures.
+      </p>
+      <div class="poster-tags">
+        <span>Monte Carlo</span>
+        <span>Heisenberg Model</span>
+        <span>Nanomagnetism</span>
+        <span>Master's Thesis</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="path">
+    <div class="section-label">Path</div>
+    <h2>Education &amp; Experience</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tag">MSc · In progress</span>
+        <h3>Computational Modelling (Atomistic &amp; Multiscale Physics, Chemistry and Biochemistry)</h3>
+        <p>Master's thesis on computational nanomagnetism in chiral nanotubes; coursework in complex networks, molecular dynamics, statistical mechanics and parallel computing.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tag">2024</span>
+        <h3>Research Internship — biomaGUNE</h3>
+        <p>Summer research internship applying computational methods to physical systems, Donostia / San Sebastián.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tag">BSc</span>
+        <h3>Physics — Universitat de Barcelona</h3>
+        <p>Foundational training in physics with a growing focus on computation and simulation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">Toolkit</div>
+    <h2>Skills</h2>
+    <div class="skills">
+      <span class="skill">Python</span>
+      <span class="skill">Fortran</span>
+      <span class="skill">Monte Carlo &amp; Micromagnetics</span>
+      <span class="skill">Molecular Dynamics</span>
+      <span class="skill">Machine Learning</span>
+      <span class="skill">Data Visualization</span>
+      <span class="skill">HPC / MPI</span>
+      <span class="skill">Linux / Clusters</span>
+      <span class="skill">Scientific Writing</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="links">
+    <a class="btn primary" href="https://www.linkedin.com/in/itxaso-munoz-aldalur/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a class="btn" href="https://github.com/itxasoma" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+  <p>Itxaso Muñoz Aldalur · Barcelona &amp; Donostia / San Sebastián</p>
+</footer>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const projects = [
+  {name:"Nanotubes-main", desc:"Master's thesis code: Monte Carlo simulation of magnetic ordering in chiral nanotubes.", lang:"Jupyter", url:"https://github.com/itxasoma/Nanotubes-main", size:359349, stars:2, color:"var(--purple)"},
+  {name:"Nanotubes", desc:"Fortran Monte Carlo (Metropolis) code with a 3D classical Heisenberg Hamiltonian: exchange, dipolar and anisotropy.", lang:"Fortran/Jupyter", url:"https://github.com/itxasoma/Nanotubes", size:6390, stars:2, color:"var(--darkpurple)"},
+  {name:"mumax3", desc:"Micromagnetic simulation workspace built on the mumax3 GPU solver.", lang:"Jupyter", url:"https://github.com/itxasoma/mumax3", size:478900, stars:1, color:"var(--blue)"},
+  {name:"masm-exchangeMC", desc:"Exchange Monte Carlo simulation of an Ising spin glass.", lang:"Fortran", url:"https://github.com/itxasoma/masm-exchangeMC", size:245997, stars:0, color:"var(--darkorange)"},
+  {name:"masm-shake", desc:"SHAKE-algorithm constrained molecular dynamics implementation.", lang:"Jupyter", url:"https://github.com/itxasoma/masm-shake", size:85735, stars:0, color:"var(--salmon)"},
+  {name:"transition-path-sampling", desc:"Minimal implementation of Transition Path Sampling for a Coarse-Graining course.", lang:"Fortran", url:"https://github.com/itxasoma/transition-path-sampling", size:4953, stars:0, color:"var(--teal)"},
+  {name:"momo-md-lj-argon", desc:"Molecular Dynamics final project: Lennard-Jones argon simulation.", lang:"Jupyter", url:"https://github.com/itxasoma/momo-md-lj-argon", size:4183, stars:0, color:"var(--orange)"},
+  {name:"momo-McMC-2DIsing", desc:"Markov-chain Monte Carlo (Metropolis) for the 2D Ising model with binning analysis.", lang:"Fortran", url:"https://github.com/itxasoma/momo-McMC-2DIsing", size:5324, stars:0, color:"var(--magenta)"},
+  {name:"kicked-rotor-chaos", desc:"Final project for Introducció a la Computació Científica: chaos in the kicked rotor.", lang:"Jupyter", url:"https://github.com/itxasoma/kicked-rotor-chaos", size:30224, stars:1, color:"var(--pink)"},
+  {name:"complex-networks-project", desc:"Analysis and modelling project for the Complex Networks course.", lang:"Python", url:"https://github.com/itxasoma/complex-networks-project", size:25917, stars:0, color:"var(--lightorange)"},
+  {name:"membrane-practice-analysis", desc:"Data analysis of membrane/soft-matter simulation practice.", lang:"Python", url:"https://github.com/itxasoma/membrane-practice-analysis", size:262072, stars:1, color:"var(--yellow)"},
+  {name:"V2--Wulff-Shapes", desc:"Modelling equilibrium crystal shapes via the Wulff construction.", lang:"Python", url:"https://github.com/itxasoma/V2--Wulff-Shapes", size:4400, stars:0, color:"var(--purple)"},
+  {name:"birdflock", desc:"Bird flock applet — an emergent-behavior simulation, live on GitHub Pages.", lang:"HTML/JS", url:"https://itxasoma.github.io/birdflock/", size:48, stars:1, color:"var(--teal)"}
+];
+
+const wrap = document.getElementById('bubbles-wrap');
+const tooltip = document.getElementById('tooltip');
+const width = wrap.clientWidth, height = wrap.clientHeight;
+
+const radiusScale = d3.scaleLog().domain([40, 480000]).range([26, 62]);
+projects.forEach(p => { p.r = radiusScale(p.size) + p.stars*2; });
+
+const svg = d3.select(wrap).append('svg')
+  .attr('viewBox', `0 0 ${width} ${height}`);
+
+const resolvedColor = c => getComputedStyle(document.documentElement).getPropertyValue(c.match(/--[\w-]+/)[0]).trim();
+projects.forEach(p => p.hex = resolvedColor(p.color));
+
+const node = svg.selectAll('g.node')
+  .data(projects)
+  .join('g')
+  .attr('class','node')
+  .style('cursor','pointer')
+  .on('mouseenter', (event,d) => {
+    tooltip.style.opacity = 1;
+    tooltip.innerHTML = `<span class="t-title">${d.name}</span>${d.desc}<br><br><em>${d.lang} · ★ ${d.stars}</em>`;
+  })
+  .on('mousemove', (event) => {
+    const rect = wrap.getBoundingClientRect();
+    tooltip.style.left = (event.clientX - rect.left + 14) + 'px';
+    tooltip.style.top = (event.clientY - rect.top + 14) + 'px';
+  })
+  .on('mouseleave', () => { tooltip.style.opacity = 0; })
+  .on('click', (event,d) => { window.open(d.url, '_blank'); });
+
+node.append('circle')
+  .attr('r', d => d.r)
+  .attr('fill', d => d.hex)
+  .attr('fill-opacity', 0.9)
+  .attr('stroke', '#160f1c')
+  .attr('stroke-width', 2);
+
+node.append('text')
+  .attr('class','bubble-label')
+  .attr('dy','0.32em')
+  .text(d => d.name.length > 14 ? d.name.slice(0,12)+'…' : d.name);
+
+const simulation = d3.forceSimulation(projects)
+  .force('charge', d3.forceManyBody().strength(6))
+  .force('center', d3.forceCenter(width/2, height/2))
+  .force('collide', d3.forceCollide().radius(d => d.r + 4).iterations(3))
+  .on('tick', () => {
+    node.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+
+node.call(d3.drag()
+  .on('start', (event,d) => { if (!event.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+  .on('drag', (event,d) => { d.fx = event.x; d.fy = event.y; })
+  .on('end', (event,d) => { if (!event.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; })
+);
+</script>
+
+</body>
+</html>
