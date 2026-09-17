@@ -8,12 +8,11 @@
   :root{
     --bg:#160f1c;
     --bg2:#1d1526;
-    --card:#241a30;
+    --card:rgba(36,26,48,0.78);
     --border:#3a2c4a;
     --text:#f3eef7;
     --muted:#b7abc4;
 
-    /* palette extracted from the poster's CMYK color defs */
     --yellow:#FCD926;
     --lightorange:#FFC72E;
     --orange:#FCAE3F;
@@ -24,7 +23,6 @@
     --purple:#9002AD;
     --darkpurple:#5802AD;
     --blue:#3972A3;
-    /* accent pulled from the photo's teal armchair */
     --teal:#3FA88F;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -38,221 +36,117 @@
   a{color:var(--orange);text-decoration:none;}
   a:hover{text-decoration:underline;}
 
-  /* top nav */
+  /* animated science background */
+  #bg-canvas{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-2;display:block;}
+  #bg-tint{
+    position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(22,15,28,0.35), rgba(22,15,28,0.72) 60%),
+      rgba(22,15,28,0.55);
+  }
+
   nav.topnav{
-    position:sticky;
-    top:0;
-    z-index:100;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    position:sticky;top:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
     padding:1rem 6vw;
     background:rgba(22,15,28,0.82);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--border);
   }
   nav.topnav .brand{
-    font-weight:700;
-    font-size:1rem;
+    font-weight:700;font-size:1rem;
     background:linear-gradient(90deg, var(--orange), var(--pink), var(--purple));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
   }
-  nav.topnav ul{
-    display:flex;
-    gap:1.6rem;
-    list-style:none;
-    flex-wrap:wrap;
-  }
-  nav.topnav ul li a{
-    color:var(--muted);
-    font-size:0.92rem;
-    font-weight:600;
-    text-decoration:none;
-    transition:color .15s ease;
-  }
+  nav.topnav ul{display:flex;gap:1.6rem;list-style:none;flex-wrap:wrap;}
+  nav.topnav ul li a{color:var(--muted);font-size:0.92rem;font-weight:600;text-decoration:none;transition:color .15s ease;}
   nav.topnav ul li a:hover{color:var(--orange);}
-  .nav-toggle{display:none;}
   @media (max-width:700px){
     nav.topnav{flex-direction:column;gap:0.8rem;align-items:flex-start;}
     nav.topnav ul{gap:1rem;font-size:0.85rem;}
   }
 
   header{
-    min-height:82vh;
-    display:flex;
-    align-items:center;
-    gap:4vw;
-    padding:8vh 8vw;
-    position:relative;
+    min-height:82vh;display:flex;align-items:center;gap:4vw;padding:8vh 8vw;
+    position:relative;flex-wrap:wrap;overflow:hidden;
     background:
-      radial-gradient(circle at 85% 8%, rgba(252,174,63,0.38), transparent 42%),
-      radial-gradient(circle at 15% 12%, rgba(212,83,133,0.32), transparent 45%),
-      radial-gradient(circle at 8% 90%, rgba(144,2,173,0.35), transparent 50%),
-      radial-gradient(circle at 65% 100%, rgba(63,168,143,0.28), transparent 45%),
-      radial-gradient(circle at 95% 70%, rgba(57,114,163,0.30), transparent 45%),
-      var(--bg);
+      radial-gradient(circle at 85% 8%, rgba(252,174,63,0.32), transparent 42%),
+      radial-gradient(circle at 15% 12%, rgba(212,83,133,0.28), transparent 45%),
+      radial-gradient(circle at 8% 90%, rgba(144,2,173,0.30), transparent 50%),
+      radial-gradient(circle at 65% 100%, rgba(63,168,143,0.24), transparent 45%),
+      radial-gradient(circle at 95% 70%, rgba(57,114,163,0.26), transparent 45%);
     border-bottom:1px solid var(--border);
-    flex-wrap:wrap;
-    overflow:hidden;
   }
-  .hero-text{flex:1 1 420px; position:relative; z-index:2;}
+  .hero-text{flex:1 1 420px;position:relative;z-index:2;}
   .hero-photo{
-    flex:0 0 300px;
-    width:300px;height:300px;
-    border-radius:50%;
-    overflow:hidden;
-    position:relative;
-    z-index:2;
-    border:4px solid transparent;
+    flex:0 0 300px;width:300px;height:300px;border-radius:50%;overflow:hidden;
+    position:relative;z-index:2;border:4px solid transparent;
     background:linear-gradient(135deg, var(--orange), var(--pink), var(--purple), var(--blue)) padding-box, linear-gradient(135deg, var(--orange), var(--pink), var(--purple), var(--blue)) border-box;
     box-shadow:0 25px 60px rgba(0,0,0,0.45), 0 0 80px rgba(212,83,133,0.25);
   }
   .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 
   .kicker{
-    font-size:0.85rem;
-    letter-spacing:0.18em;
-    text-transform:uppercase;
+    font-size:0.85rem;letter-spacing:0.18em;text-transform:uppercase;
     background:linear-gradient(90deg, var(--orange), var(--pink));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    font-weight:700;
-    margin-bottom:1.2rem;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-weight:700;margin-bottom:1.2rem;
   }
-  h1{
-    font-size:clamp(2.2rem, 5.5vw, 3.8rem);
-    font-weight:700;
-    line-height:1.05;
-    letter-spacing:-0.02em;
-  }
-  .subtitle{
-    margin-top:1.1rem;
-    font-size:clamp(1.02rem, 2vw, 1.3rem);
-    color:var(--muted);
-    max-width:600px;
-  }
-  .location{
-    margin-top:0.9rem;
-    font-size:0.95rem;
-    color:var(--teal);
-    font-weight:600;
-  }
-  .links{
-    margin-top:2.2rem;
-    display:flex;
-    gap:0.9rem;
-    flex-wrap:wrap;
-  }
+  h1{font-size:clamp(2.2rem, 5.5vw, 3.8rem);font-weight:700;line-height:1.05;letter-spacing:-0.02em;}
+  .subtitle{margin-top:1.1rem;font-size:clamp(1.02rem, 2vw, 1.3rem);color:var(--muted);max-width:600px;}
+  .location{margin-top:0.9rem;font-size:0.95rem;color:var(--teal);font-weight:600;}
+  .links{margin-top:2.2rem;display:flex;gap:0.9rem;flex-wrap:wrap;}
   .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:0.55rem;
-    padding:0.7rem 1.3rem;
-    border-radius:999px;
-    font-weight:600;
-    font-size:0.95rem;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    transition:transform .15s ease, border-color .15s ease;
+    display:inline-flex;align-items:center;gap:0.55rem;padding:0.7rem 1.3rem;border-radius:999px;
+    font-weight:600;font-size:0.95rem;border:1px solid var(--border);background:var(--card);color:var(--text);
+    transition:transform .15s ease, border-color .15s ease;backdrop-filter:blur(6px);
   }
   .btn:hover{transform:translateY(-2px);border-color:var(--orange);text-decoration:none;}
-  .btn.primary{
-    background:linear-gradient(135deg, var(--orange), var(--pink));
-    color:#1a1020;
-    border:none;
-  }
+  .btn.primary{background:linear-gradient(135deg, var(--orange), var(--pink));color:#1a1020;border:none;}
+  .btn.github{background:linear-gradient(135deg, var(--blue), var(--teal));color:#0b1a22;border:none;}
 
   main{max-width:1000px;margin:0 auto;padding:6vh 6vw;}
   section{margin-bottom:7vh;}
-  .section-label{
-    font-size:0.8rem;
-    letter-spacing:0.16em;
-    text-transform:uppercase;
-    color:var(--purple);
-    font-weight:700;
-    margin-bottom:0.8rem;
-  }
-  h2{
-    font-size:clamp(1.5rem, 3vw, 2rem);
-    font-weight:700;
-    margin-bottom:1.2rem;
-    letter-spacing:-0.01em;
-  }
+  .section-label{font-size:0.8rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--purple);font-weight:700;margin-bottom:0.8rem;}
+  h2{font-size:clamp(1.5rem, 3vw, 2rem);font-weight:700;margin-bottom:1.2rem;letter-spacing:-0.01em;}
   p.lead{color:var(--muted);max-width:700px;font-size:1.02rem;}
 
-  /* bubble chart */
   #bubbles-wrap{
-    position:relative;
-    width:100%;
-    height:560px;
-    background:var(--bg2);
-    border:1px solid var(--border);
-    border-radius:20px;
-    margin-top:1.6rem;
-    overflow:hidden;
+    position:relative;width:100%;height:560px;background:rgba(29,21,38,0.72);
+    border:1px solid var(--border);border-radius:16px;margin-top:1.6rem;overflow:hidden;
+    backdrop-filter:blur(4px);
   }
   #bubbles-wrap svg{width:100%;height:100%;display:block;cursor:grab;}
-  .bubble-label{
-    font-size:11px;
-    font-weight:600;
-    fill:#1a1020;
-    pointer-events:none;
-    text-anchor:middle;
-  }
+  .bubble-label{font-size:11px;font-weight:600;fill:#1a1020;pointer-events:none;text-anchor:middle;}
   .tooltip{
-    position:absolute;
-    max-width:260px;
-    background:#0f0a15;
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:0.7rem 0.9rem;
-    font-size:0.85rem;
-    color:var(--text);
-    pointer-events:none;
-    opacity:0;
-    transition:opacity .12s ease;
-    z-index:10;
+    position:absolute;max-width:260px;background:#0f0a15;border:1px solid var(--border);border-radius:10px;
+    padding:0.7rem 0.9rem;font-size:0.85rem;color:var(--text);pointer-events:none;opacity:0;
+    transition:opacity .12s ease;z-index:10;
   }
   .tooltip .t-title{font-weight:700;color:var(--orange);margin-bottom:0.25rem;display:block;}
   .hint{color:var(--muted);font-size:0.85rem;margin-top:0.6rem;}
 
-  .poster-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:2rem;
-    border-left:4px solid var(--purple);
-  }
+  .poster-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;border-left:4px solid var(--purple);backdrop-filter:blur(6px);}
   .poster-card h3{font-size:1.15rem;margin-bottom:0.3rem;}
   .poster-card .authors{color:var(--teal);font-size:0.9rem;margin-bottom:1rem;}
   .poster-card p{color:var(--muted);font-size:0.95rem;}
   .poster-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem;}
-  .poster-tags span{
-    padding:0.3rem 0.8rem;border-radius:999px;font-size:0.78rem;font-weight:600;
-    background:rgba(144,2,173,0.18); color:var(--pink); border:1px solid var(--border);
-  }
+  .poster-tags span{padding:0.3rem 0.8rem;border-radius:999px;font-size:0.78rem;font-weight:600;background:rgba(144,2,173,0.18);color:var(--pink);border:1px solid var(--border);}
+  .poster-embed{margin-top:1.4rem;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#0f0a15;}
+  .poster-embed iframe{width:100%;height:640px;border:none;display:block;}
+  .poster-actions{margin-top:1rem;display:flex;gap:0.8rem;flex-wrap:wrap;}
 
   .timeline{border-left:2px solid var(--border);padding-left:1.4rem;margin-top:1.6rem;}
   .tl-item{margin-bottom:1.6rem;position:relative;}
-  .tl-item::before{
-    content:'';position:absolute;left:-1.55rem;top:0.3rem;width:9px;height:9px;
-    border-radius:50%;background:var(--orange);
-  }
+  .tl-item::before{content:'';position:absolute;left:-1.55rem;top:0.3rem;width:9px;height:9px;border-radius:50%;background:var(--orange);}
   .tl-item .tag{color:var(--orange);font-weight:600;font-size:0.85rem;}
   .tl-item h3{font-size:1.05rem;margin-top:0.2rem;}
   .tl-item p{color:var(--muted);font-size:0.92rem;margin-top:0.2rem;}
 
   .skills{display:flex;flex-wrap:wrap;gap:0.55rem;margin-top:1.4rem;}
-  .skill{
-    padding:0.4rem 0.9rem;border-radius:999px;background:var(--bg2);
-    border:1px solid var(--border);font-size:0.85rem;color:var(--text);
-  }
+  .skill{padding:0.4rem 0.9rem;border-radius:999px;background:var(--card);border:1px solid var(--border);font-size:0.85rem;color:var(--text);backdrop-filter:blur(6px);}
 
-  footer{border-top:1px solid var(--border);padding:5vh 8vw;text-align:center;color:var(--muted);font-size:0.9rem;}
+  footer{border-top:1px solid var(--border);padding:5vh 8vw;text-align:center;color:var(--muted);font-size:0.9rem;background:rgba(22,15,28,0.4);}
   footer .links{justify-content:center;margin-bottom:1.2rem;}
 
   @media (max-width:700px){
@@ -260,10 +154,14 @@
     .hero-text{flex:1 1 auto;}
     .hero-photo{width:220px;height:220px;flex:0 0 220px;}
     #bubbles-wrap{height:460px;}
+    .poster-embed iframe{height:420px;}
   }
 </style>
 </head>
 <body>
+
+<canvas id="bg-canvas"></canvas>
+<div id="bg-tint"></div>
 
 <nav class="topnav">
   <div class="brand">Itxaso Muñoz Aldalur</div>
@@ -277,7 +175,7 @@
   </ul>
 </nav>
 
-<header>
+<header data-bg="particles">
   <div class="hero-text">
     <div class="kicker">Physicist · Computational Science</div>
     <h1>Itxaso Muñoz Aldalur</h1>
@@ -285,7 +183,7 @@
     <p class="location">📍 Barcelona &amp; Donostia / San Sebastián</p>
     <div class="links">
       <a class="btn primary" href="https://www.linkedin.com/in/itxaso-munoz-aldalur/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn" href="https://github.com/itxasoma" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn github" href="https://github.com/itxasoma" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
   </div>
   <div class="hero-photo">
@@ -295,7 +193,7 @@
 
 <main>
 
-  <section id="about">
+  <section id="about" data-bg="particles">
     <div class="section-label">About</div>
     <h2>Computational physicist, curious by training</h2>
     <p class="lead">
@@ -313,17 +211,17 @@
     </p>
   </section>
 
-  <section id="projects">
+  <section id="projects" data-bg="spins">
     <div class="section-label">Projects</div>
     <h2>An interactive map of my repositories</h2>
     <p class="lead">Every bubble below is a project from my GitHub — sized by scope and colored from the poster's palette. Move your cursor near a bubble to see it drift away, hover for details, or click to open the repository.</p>
     <div id="bubbles-wrap">
       <div class="tooltip" id="tooltip"></div>
     </div>
-    <p class="hint">Tip: drag a bubble to reposition it, or just hover nearby and watch them react.</p>
+    <p class="hint">Tip: drag a bubble to reposition it, or just hover nearby and watch them react. They stay inside the box.</p>
   </section>
 
-  <section id="poster">
+  <section id="poster" data-bg="spins">
     <div class="section-label">Scientific Poster</div>
     <h2>Featured research</h2>
     <div class="poster-card">
@@ -344,10 +242,17 @@
         <span>Nanomagnetism</span>
         <span>Master's Thesis</span>
       </div>
+      <div class="poster-embed">
+        <iframe src="assets/poster.pdf" title="Magnetic Ordering in Chiral Nanotubes — Poster"></iframe>
+      </div>
+      <div class="poster-actions">
+        <a class="btn primary" href="assets/poster.pdf" target="_blank" rel="noopener">View full poster ↗</a>
+        <a class="btn" href="assets/poster.pdf" download>Download PDF</a>
+      </div>
     </div>
   </section>
 
-  <section id="path">
+  <section id="path" data-bg="orbits">
     <div class="section-label">Path</div>
     <h2>Education &amp; Experience</h2>
     <div class="timeline">
@@ -379,7 +284,7 @@
     </div>
   </section>
 
-  <section id="skills">
+  <section id="skills" data-bg="molecules">
     <div class="section-label">Toolkit</div>
     <h2>Skills</h2>
     <div class="skills">
@@ -397,16 +302,17 @@
 
 </main>
 
-<footer id="contact">
+<footer id="contact" data-bg="molecules">
   <div class="links">
     <a class="btn primary" href="https://www.linkedin.com/in/itxaso-munoz-aldalur/" target="_blank" rel="noopener">LinkedIn ↗</a>
-    <a class="btn" href="https://github.com/itxasoma" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn github" href="https://github.com/itxasoma" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
   <p>Itxaso Muñoz Aldalur · Barcelona &amp; Donostia / San Sebastián</p>
 </footer>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
+/* ---------- Projects bubble chart ---------- */
 const projects = [
   {name:"Chiral Nanotubes — TFM", desc:"Master's thesis: Monte Carlo simulation of magnetic ordering in chiral nanotubes. Presented at ICFPM 2025 and INTERMAG 2026.", lang:"Jupyter", url:"https://github.com/itxasoma/Nanotubes-main", size:359349, stars:2, color:"var(--purple)"},
   {name:"Nanotubes — TFG", desc:"Bachelor's thesis: Fortran Monte Carlo (Metropolis) code with a 3D classical Heisenberg Hamiltonian — exchange, dipolar and anisotropy.", lang:"Fortran/Jupyter", url:"https://github.com/itxasoma/Nanotubes", size:6390, stars:2, color:"var(--darkpurple)"},
@@ -430,17 +336,13 @@ const width = wrap.clientWidth, height = wrap.clientHeight;
 const radiusScale = d3.scaleLog().domain([40, 480000]).range([26, 62]);
 projects.forEach(p => { p.r = radiusScale(p.size) + p.stars*2; });
 
-const svg = d3.select(wrap).append('svg')
-  .attr('viewBox', `0 0 ${width} ${height}`);
-
+const svg = d3.select(wrap).append('svg').attr('viewBox', `0 0 ${width} ${height}`);
 const resolvedColor = c => getComputedStyle(document.documentElement).getPropertyValue(c.match(/--[\w-]+/)[0]).trim();
 projects.forEach(p => p.hex = resolvedColor(p.color));
+projects.forEach(p => { p.x = width/2 + (Math.random()-0.5)*40; p.y = height/2 + (Math.random()-0.5)*40; });
 
 const node = svg.selectAll('g.node')
-  .data(projects)
-  .join('g')
-  .attr('class','node')
-  .style('cursor','pointer')
+  .data(projects).join('g').attr('class','node').style('cursor','pointer')
   .on('mouseenter', (event,d) => {
     tooltip.style.opacity = 1;
     tooltip.innerHTML = `<span class="t-title">${d.name}</span>${d.desc}<br><br><em>${d.lang} · ★ ${d.stars}</em>`;
@@ -453,34 +355,30 @@ const node = svg.selectAll('g.node')
   .on('mouseleave', () => { tooltip.style.opacity = 0; })
   .on('click', (event,d) => { window.open(d.url, '_blank'); });
 
-node.append('circle')
-  .attr('r', d => d.r)
-  .attr('fill', d => d.hex)
-  .attr('fill-opacity', 0.9)
-  .attr('stroke', '#160f1c')
-  .attr('stroke-width', 2);
-
-node.append('text')
-  .attr('class','bubble-label')
-  .attr('dy','0.32em')
-  .text(d => d.name.length > 16 ? d.name.slice(0,14)+'…' : d.name);
+node.append('circle').attr('r', d => d.r).attr('fill', d => d.hex).attr('fill-opacity', 0.9).attr('stroke', '#160f1c').attr('stroke-width', 2);
+node.append('text').attr('class','bubble-label').attr('dy','0.32em').text(d => d.name.length > 16 ? d.name.slice(0,14)+'…' : d.name);
 
 const simulation = d3.forceSimulation(projects)
   .force('charge', d3.forceManyBody().strength(6))
   .force('center', d3.forceCenter(width/2, height/2))
   .force('collide', d3.forceCollide().radius(d => d.r + 4).iterations(3))
   .on('tick', () => {
+    for (const d of projects){
+      const pad = 2;
+      if (d.x - d.r < pad){ d.x = d.r + pad; d.vx = Math.abs(d.vx)*0.3; }
+      if (d.x + d.r > width - pad){ d.x = width - d.r - pad; d.vx = -Math.abs(d.vx)*0.3; }
+      if (d.y - d.r < pad){ d.y = d.r + pad; d.vy = Math.abs(d.vy)*0.3; }
+      if (d.y + d.r > height - pad){ d.y = height - d.r - pad; d.vy = -Math.abs(d.vy)*0.3; }
+    }
     node.attr('transform', d => `translate(${d.x},${d.y})`);
   });
 
-// gentle drift away from the cursor, even without dragging
 const mouse = {x:null, y:null};
 const influence = 130;
-
 function mouseForce(alpha){
   if(mouse.x==null) return;
   for (const d of projects){
-    if (d.fx != null) continue; // being dragged, skip
+    if (d.fx != null) continue;
     const dx = d.x - mouse.x, dy = d.y - mouse.y;
     const dist = Math.sqrt(dx*dx+dy*dy) || 1;
     if (dist < influence + d.r){
@@ -491,7 +389,6 @@ function mouseForce(alpha){
   }
 }
 simulation.force('mouse', mouseForce);
-
 svg.on('mousemove', (event) => {
   const [mx,my] = d3.pointer(event);
   mouse.x = mx; mouse.y = my;
@@ -501,9 +398,156 @@ svg.on('mouseleave', () => { mouse.x = null; mouse.y = null; });
 
 node.call(d3.drag()
   .on('start', (event,d) => { if (!event.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
-  .on('drag', (event,d) => { d.fx = event.x; d.fy = event.y; })
+  .on('drag', (event,d) => {
+    d.fx = Math.max(d.r, Math.min(width - d.r, event.x));
+    d.fy = Math.max(d.r, Math.min(height - d.r, event.y));
+  })
   .on('end', (event,d) => { if (!event.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; })
 );
+
+/* ---------- Artistic science background ---------- */
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let cw, ch;
+function resize(){ cw = canvas.width = window.innerWidth; ch = canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize); resize();
+
+const palette = ['#FCAE3F','#D45385','#9002AD','#3972A3','#3FA88F','#ED7966','#FCD926'];
+function pick(i){ return palette[i % palette.length]; }
+
+// particle network
+const particles = Array.from({length:70}, () => ({
+  x: Math.random()*cw, y: Math.random()*ch,
+  vx: (Math.random()-0.5)*0.35, vy: (Math.random()-0.5)*0.35,
+  c: Math.floor(Math.random()*palette.length)
+}));
+
+// spin lattice grid
+const SPIN_N = 12;
+const spins = [];
+for(let i=0;i<SPIN_N;i++) for(let j=0;j<SPIN_N;j++){
+  spins.push({gx:i, gy:j, angle:Math.random()*Math.PI*2, speed:(Math.random()-0.5)*0.02, c: Math.floor(Math.random()*palette.length)});
+}
+
+// orbit rings
+const orbits = Array.from({length:5}, (_,i) => ({
+  radiusFactor: 0.12 + i*0.075, speed: 0.15 + i*0.05, dotCount: 3+i, c: Math.floor(Math.random()*palette.length)
+}));
+
+// molecule bonds
+const molecules = Array.from({length:40}, () => ({
+  x: Math.random()*cw, y: Math.random()*ch,
+  vx:(Math.random()-0.5)*0.5, vy:(Math.random()-0.5)*0.5,
+  c: Math.floor(Math.random()*palette.length)
+}));
+
+function drawParticles(alpha){
+  ctx.save(); ctx.globalAlpha = alpha;
+  for (const p of particles){
+    p.x += p.vx; p.y += p.vy;
+    if(p.x<0||p.x>cw) p.vx*=-1;
+    if(p.y<0||p.y>ch) p.vy*=-1;
+  }
+  for (let i=0;i<particles.length;i++){
+    for (let j=i+1;j<particles.length;j++){
+      const a=particles[i], b=particles[j];
+      const d = Math.hypot(a.x-b.x, a.y-b.y);
+      if (d < 140){
+        ctx.strokeStyle = pick(a.c); ctx.globalAlpha = alpha * (1 - d/140) * 0.35;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+      }
+    }
+  }
+  ctx.globalAlpha = alpha;
+  for (const p of particles){
+    ctx.fillStyle = pick(p.c);
+    ctx.beginPath(); ctx.arc(p.x,p.y,2.4,0,Math.PI*2); ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawSpins(alpha,t){
+  ctx.save(); ctx.globalAlpha = alpha;
+  const cellW = cw/SPIN_N, cellH = ch/SPIN_N, len = Math.min(cellW,cellH)*0.32;
+  for (const s of spins){
+    s.angle += s.speed;
+    const cx = cellW*(s.gx+0.5), cy = cellH*(s.gy+0.5);
+    const ex = cx + Math.cos(s.angle)*len, ey = cy + Math.sin(s.angle)*len;
+    ctx.strokeStyle = pick(s.c); ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.moveTo(cx-Math.cos(s.angle)*len, cy-Math.sin(s.angle)*len); ctx.lineTo(ex,ey); ctx.stroke();
+    ctx.fillStyle = pick(s.c);
+    ctx.beginPath(); ctx.arc(ex,ey,2.2,0,Math.PI*2); ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawOrbits(alpha,t){
+  ctx.save(); ctx.globalAlpha = alpha;
+  const cx = cw*0.75, cy = ch*0.35;
+  const base = Math.min(cw,ch);
+  for (const o of orbits){
+    const r = base*o.radiusFactor;
+    ctx.strokeStyle = pick(o.c); ctx.globalAlpha = alpha*0.3; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.stroke();
+    ctx.globalAlpha = alpha;
+    for (let k=0;k<o.dotCount;k++){
+      const a = t*o.speed + (Math.PI*2/o.dotCount)*k;
+      const dx = cx + Math.cos(a)*r, dy = cy + Math.sin(a)*r;
+      ctx.fillStyle = pick(o.c);
+      ctx.beginPath(); ctx.arc(dx,dy,3,0,Math.PI*2); ctx.fill();
+    }
+  }
+  ctx.restore();
+}
+
+function drawMolecules(alpha){
+  ctx.save(); ctx.globalAlpha = alpha;
+  for (const m of molecules){
+    m.x += m.vx; m.y += m.vy;
+    if(m.x<0||m.x>cw) m.vx*=-1;
+    if(m.y<0||m.y>ch) m.vy*=-1;
+  }
+  for (let i=0;i<molecules.length;i++){
+    for (let j=i+1;j<molecules.length;j++){
+      const a=molecules[i], b=molecules[j];
+      const d = Math.hypot(a.x-b.x, a.y-b.y);
+      if (d < 90){
+        ctx.strokeStyle = pick(a.c); ctx.globalAlpha = alpha*(1-d/90)*0.5; ctx.lineWidth=1.4;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+      }
+    }
+  }
+  ctx.globalAlpha = alpha;
+  for (const m of molecules){
+    ctx.fillStyle = pick(m.c);
+    ctx.beginPath(); ctx.arc(m.x,m.y,4,0,Math.PI*2); ctx.fill();
+  }
+  ctx.restore();
+}
+
+const drawers = {particles:drawParticles, spins:drawSpins, orbits:drawOrbits, molecules:drawMolecules};
+
+let currentMode = 'particles', prevMode = 'particles', modeChangeTime = performance.now();
+const sections = document.querySelectorAll('[data-bg]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.intersectionRatio > 0.45){
+      const mode = entry.target.dataset.bg;
+      if (mode !== currentMode){ prevMode = currentMode; currentMode = mode; modeChangeTime = performance.now(); }
+    }
+  });
+}, {threshold:[0.45]});
+sections.forEach(s => observer.observe(s));
+
+function loop(t){
+  ctx.clearRect(0,0,cw,ch);
+  const elapsed = performance.now() - modeChangeTime;
+  const blend = Math.min(1, elapsed/700);
+  if (blend < 1) drawers[prevMode](1-blend, t*0.001);
+  drawers[currentMode](blend < 1 ? blend : 1, t*0.001);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
 </script>
 
 </body>
