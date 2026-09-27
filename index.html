@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,9 +56,11 @@
   }
   nav.topnav .brand{
     font-weight:700;font-size:1rem;
+    display:flex;align-items:center;gap:0.6rem;
     background:linear-gradient(90deg, var(--orange), var(--pink), var(--purple));
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
+  nav.topnav .brand img{height:32px;width:32px;display:block;}
   nav.topnav ul{display:flex;gap:1.6rem;list-style:none;flex-wrap:wrap;}
   nav.topnav ul li a{color:var(--muted);font-size:0.92rem;font-weight:600;text-decoration:none;transition:color .15s ease;}
   nav.topnav ul li a:hover{color:var(--orange);}
@@ -156,6 +160,7 @@
   .contact-secondary{margin-top:1.4rem;display:flex;gap:0.9rem;justify-content:center;flex-wrap:wrap;}
 
   footer{border-top:1px solid var(--border);padding:4vh 8vw;text-align:center;color:var(--muted);font-size:0.85rem;background:rgba(22,15,28,0.4);}
+  footer img{height:28px;width:28px;display:block;margin:0 auto 0.6rem;opacity:0.85;}
 
   @media (max-width:700px){
     header{flex-direction:column;text-align:center;padding:8vh 6vw;}
@@ -166,6 +171,7 @@
     p.lead{text-align:left;}
     .poster-card p{text-align:left;}
     .tl-item p{text-align:left;}
+    nav.topnav{flex-direction:column;gap:0.8rem;align-items:center;}
   }
 </style>
 </head>
@@ -175,7 +181,10 @@
 <div id="bg-tint"></div>
 
 <nav class="topnav">
-  <div class="brand">Itxaso Muñoz Aldalur</div>
+  <div class="brand">
+    <img src="IMA-logo-nobackground.png" alt="IMA logo">
+    Itxaso Muñoz Aldalur
+  </div>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -327,6 +336,7 @@
 </main>
 
 <footer>
+  <img src="IMA-logo-nobackground.png" alt="IMA logo">
   <p>Itxaso Muñoz Aldalur · Barcelona &amp; Donostia / San Sebastián</p>
 </footer>
 
